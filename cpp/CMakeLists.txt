@@ -4,7 +4,7 @@ project(cpp)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXE_LINKER_FLAGS "-static")
 
-add_executable(cpp day6_2.cpp
+add_executable(cpp day7_2.cpp
         utils.h
         utils.cpp)
 
