@@ -1,34 +1,74 @@
-import functools
-
-
 def get_input():
-    with open("inputs/day5_1_2.inp") as f:
+    with open("inputs/day5_1_1.inp") as f:
         return f.read()
 
-def init_seed_dict(seeds):
-    return functools.reduce(lambda acc, cur: acc | {cur: (int(cur), False) }, seeds, {})
-
-def gen_mapping(d, dest, src, l):
-    keys = list(d.keys())
-    to_be_reviewed = list(map(lambda x: x[0], d.values()))
-    for i in range(len(to_be_reviewed)):
-        if src <= to_be_reviewed[i] <= src + l:
-            _d = dest - src + to_be_reviewed[i]
-            if not d[keys[i]][1]:
-                d[keys[i]] = _d, True
+def gen_mapping(dest, src, l):
+    return src, src + l - 1, dest - src
 
 inp = get_input()
 lines = inp.split('\n')
-my_dict = init_seed_dict(lines[0].split(': ')[1].split())
+seeds = list(map(int, lines[0].split(': ')[1].split()))
+seeds = [
+    (seeds[i], seeds[i] + seeds[i+1] - 1)
+    for i in range(0, len(seeds), 2)
+]
+
+def apply_mapping(left, right, mapping):
+    overlapped = []
+    for left_mapping, right_mapping, delta in mapping:
+        # Neu seed va mapping co giao nhau => tim ra vung giao nhau
+        if not (right_mapping < left or left_mapping > right):
+            overlapped.append((max(left_mapping, left), min(right_mapping, right), delta))
+
+    for i, common in enumerate(overlapped):
+        l, r, delta = common
+        yield l + delta, r + delta
+
+        if i < len(overlapped) - 1 and overlapped[i+1][0] > r + 1:
+            yield r + 1, overlapped[i + 1][0] - 1
+
+    if len(overlapped) == 0:
+        yield left, right
+        return
+
+    if overlapped[0][0] != left:
+        yield left, overlapped[0][0] - 1
+    if overlapped[-1][1] != right:
+        yield overlapped[-1][1] + 1, right
+
+current_maps = []
+final_maps = []
+is_generating = False
 
 for line in lines[2:]:
     if len(line) == 0:
         continue
     if line[0].isdigit():
-        gen_mapping(my_dict, *map(int, line.split()))
+        if not is_generating:
+            is_generating = True
+            current_maps.clear()
+        current_maps.append(gen_mapping(*map(int, line.split())))
     else:
-        for k in my_dict.keys():
-            value, _ = my_dict[k]
-            my_dict[k] = value, False
+        if is_generating:
+            is_generating = False
+            current_maps.sort(key=lambda t: t[0])
+            final_maps.append(current_maps[:])
+final_maps.append(current_maps)
 
-print(min(my_dict.values(), key=lambda v: v[0])[0])
+ans = float('inf')
+
+for seed_range in seeds:
+    current_ranges = [seed_range]
+    new_ranges = []
+
+    for m in final_maps:
+        for left, right in current_ranges:
+            for new_interval in apply_mapping(left, right, m):
+                new_ranges.append(new_interval)
+        print(current_ranges)
+        current_ranges, new_ranges = new_ranges, []
+
+    for left, right in current_ranges:
+        ans = min(ans, left)
+
+print(ans)

@@ -1,21 +1,35 @@
+import functools
+
+
 def get_input():
-    with open("inputs/day4_1_2.inp") as inp:
-        input = inp.read()
-    return input
+    with open("inputs/day5_1_1.inp") as f:
+        return f.read()
 
-def count_numbers(my_nums, winning_nums):
-    return sum(map(lambda n: 1 if n in winning_nums else 0, my_nums))
+def init_seed_dict(seeds):
+    return functools.reduce(lambda acc, cur: acc | {cur: (int(cur), False) }, seeds, {})
 
-def check_line(line):
-    _, line = line.split(": ")
-    winning_numbers, my_numbers = line.split(" | ")
-    winning_numbers = list(map(int, winning_numbers.split()))
-    my_numbers = list(map(int, my_numbers.split()))
-    count = count_numbers(my_numbers, winning_numbers)
-    return 0 if count == 0 else 2 ** (count - 1)
+def gen_mapping(d, dest, src, l):
+    keys = list(d.keys())
+    to_be_reviewed = list(map(lambda x: x[0], d.values()))
+    for i in range(len(to_be_reviewed)):
+        if src <= to_be_reviewed[i] <= src + l:
+            _d = dest - src + to_be_reviewed[i]
+            if not d[keys[i]][1]:
+                d[keys[i]] = _d, True
 
 inp = get_input()
-s = 0
-for line in inp.split('\n'):
-    s+=check_line(line)
-print(s)
+lines = inp.split('\n')
+my_dict = init_seed_dict(lines[0].split(': ')[1].split())
+
+for line in lines[2:]:
+    if len(line) == 0:
+        continue
+    if line[0].isdigit():
+        gen_mapping(my_dict, *map(int, line.split()))
+        print(my_dict)
+    else:
+        for k in my_dict.keys():
+            value, _ = my_dict[k]
+            my_dict[k] = value, False
+
+print(min(my_dict.values(), key=lambda v: v[0])[0])
