@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3036d4a7-0a2d-4619-8c89-8369cc3b1959" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day5_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/day5_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day5_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/day5_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputs/day5_1_1.inp" beforeDir="false" afterPath="$PROJECT_DIR$/inputs/day5_1_1.inp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputs/day5_1_2.inp" beforeDir="false" afterPath="$PROJECT_DIR$/inputs/day5_1_2.inp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +62,8 @@
       <workItem from="1701702705128" duration="123000" />
       <workItem from="1701795883464" duration="7335000" />
       <workItem from="1701862516946" duration="119000" />
-      <workItem from="1701971208895" duration="14414000" />
+      <workItem from="1701971208895" duration="14692000" />
+      <workItem from="1702118268973" duration="7000" />
     </task>
     <servers />
   </component>
@@ -75,7 +72,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/python$day4_2.coverage" NAME="day4_2 Coverage Results" MODIFIED="1701702815374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/python$day5_2.coverage" NAME="day5_2 Coverage Results" MODIFIED="1702032645505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python$day5_2.coverage" NAME="day5_2 Coverage Results" MODIFIED="1702032726201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python$day4_1.coverage" NAME="day4_1 Coverage Results" MODIFIED="1701702820730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python$day5_1.coverage" NAME="day5_1 Coverage Results" MODIFIED="1701980242748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
